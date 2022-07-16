@@ -4,48 +4,31 @@ import ActionCard from "../components/ActionCard";
 import DropDown from "../components/DropDown";
 import Tabs from "../components/Tabs";
 
-const Home: NextPage = () => {
+const SecondTab = () => {
+  return <div>SECOND TAB</div>;
+};
 
+const Home: NextPage = () => {
   return (
     <div className="p-12">
-      {/* <DropDown
-        onOptionClick={(option) => {
-          console.log(option)
-        }}
-        options={[
-          'Dark Mode',
-          'Light Mode',
+      <Tabs
+        panels={[
+          {
+            name: "First Tab",
+            content: <div>FIRST TAB</div>
+          },
+          {
+            name: "Second Tab",
+            content: <SecondTab />
+          },
+          {
+            name: "Third Tab",
+            content: (() => {
+              return <div>THIRD TAB</div>;
+            })()
+          }
         ]}
-        defaultText="Select a Mode"
-      /> */}
-
-      {/* <ActionCard
-        title={"Download Your File"}
-        description={"Click the button below to start your file download"}
-        buttonText={"DOWNLOAD"}
-      /> */}
-
-      <Tabs panels={[
-        {
-          name: 'First Tab',
-          content: () => {
-            return <div>HELLO WORLD FIRST TAB</div>
-          }
-        },
-        {
-          name: 'Second Tab',
-          content: () => {
-            return <div>SECOND TAB</div>
-          }
-        },
-        {
-          name: 'Third Tab',
-          content: () => {
-            return <div>THIRD TAB</div>
-          }
-        }
-      ]} />
-
+      />
     </div>
   );
 };
