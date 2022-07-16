@@ -19,14 +19,17 @@ const UpTriangle = ({ size }: { size: number }) => {
 
 const DropDown: FC<{
   options: string[],
-  onOptionClick: (option: string) => void
+  onOptionClick: (option: string) => void,
+  defaultText: string,
 }> = (
   {
     options,
-    onOptionClick
+    onOptionClick,
+    defaultText,
   }
 ) => {
     const [isExpanded, setIsExpanded] = useState(false)
+    const [selectedOption, setSelectedOption] = useState(defaultText);
     const showCaretDown = isExpanded;
     const showCaretRight = !isExpanded;
 
@@ -36,7 +39,7 @@ const DropDown: FC<{
           onClick={() => setIsExpanded(!isExpanded)}
           className="flex items-center rounded text-white px-2 py-1 hover:bg-gray-400 bg-gray-500"
         >
-          <div className="mr-1">Dropdown</div>
+          <div className="mr-1">{selectedOption}</div>
           <div>
             {showCaretDown && <CaretDown size={16} />}
             {showCaretRight && <CaretRight size={16} />}
@@ -50,6 +53,7 @@ const DropDown: FC<{
                 <li
                   onClick={() => {
                     setIsExpanded(false);
+                    setSelectedOption(option);
                     onOptionClick(option);
                   }}
                   className="hover:bg-blue-500 hover:text-white px-2 py-1 cursor-pointer"
